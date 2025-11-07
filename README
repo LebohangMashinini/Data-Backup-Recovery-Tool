@@ -21,48 +21,49 @@ A Python tool to **backup, restore, and preview** a SQLite database. Integrates 
 ```bash
 git clone https://github.com/LebohangMashinini/Data-Backup-Recovery-Tool.git
 cd Data-Backup-Recovery-Tool
+Create a virtual environment:
 
-2. Create a virtual environment
-
-```
+bash
+Copy code
 python -m venv .venv
-source .venv/Scripts/activate  # Windows
-# or
-source .venv/bin/activate      # Linux/Mac
+# Windows
+.venv\Scripts\activate
+# Linux/Mac
+source .venv/bin/activate
+Install dependencies:
 
-
-3. Install dependencies
-
+bash
+Copy code
 pip install -r requirements.txt
+Usage
+Create database and table:
 
-
-## Usage
-
-1. Create database and table
-
+bash
+Copy code
 python sqlite_db.py
+Seed fake data:
 
-
-2. Seed fake data
-
+bash
+Copy code
 python seed_data.py
+Preview database:
 
-
-3. Preview database
-
+bash
+Copy code
 python main.py preview
+Backup database:
 
-4. Backup database
-
+bash
+Copy code
 python main.py backup
+Restore database:
 
-5. Restore database
-
+bash
+Copy code
 python main.py restore --file backups/backup_YYYYMMDD_HHMMSS.db
-
-
-## Folder Structure
-
+Folder Structure
+bash
+Copy code
 data-backup-tool/
 │
 ├── main.py                # CLI interface
@@ -73,10 +74,9 @@ data-backup-tool/
 │   ├── restore_manager.py # Restore functions
 ├── backups/               # Stores backup files
 └── data.db                # SQLite database file
+Notes
+Each backup file is timestamped for easy tracking
 
+MinIO bucket is created automatically if it does not exist
 
-## Notes
-
-- Each backup file is timestamped for easy tracking
-- MinIO bucket is created automatically if it does not exist
-- CLI actions: preview, backup, restore
+CLI actions: preview, backup, restore
