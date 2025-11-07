@@ -1,0 +1,82 @@
+# Data Backup & Recovery Tool
+
+A Python tool to **backup, restore, and preview** a SQLite database. Integrates with **MinIO** for virtual storage, simulating cloud backups.
+
+---
+
+## Features
+
+- Preview the first 10 rows of your database  
+- Backup database locally with timestamped files  
+- Upload backups to MinIO (S3-compatible object storage)  
+- Restore database from a specific backup  
+- CLI interface for easy usage  
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/LebohangMashinini/Data-Backup-Recovery-Tool.git
+cd Data-Backup-Recovery-Tool
+
+2. Create a virtual environment
+
+```
+python -m venv .venv
+source .venv/Scripts/activate  # Windows
+# or
+source .venv/bin/activate      # Linux/Mac
+
+
+3. Install dependencies
+
+pip install -r requirements.txt
+
+
+## Usage
+
+1. Create database and table
+
+python sqlite_db.py
+
+
+2. Seed fake data
+
+python seed_data.py
+
+
+3. Preview database
+
+python main.py preview
+
+4. Backup database
+
+python main.py backup
+
+5. Restore database
+
+python main.py restore --file backups/backup_YYYYMMDD_HHMMSS.db
+
+
+## Folder Structure
+
+data-backup-tool/
+│
+├── main.py                # CLI interface
+├── sqlite_db.py           # Database & table creation
+├── seed_data.py           # Insert fake data
+├── backup/
+│   ├── backup_manager.py  # Backup & upload functions
+│   ├── restore_manager.py # Restore functions
+├── backups/               # Stores backup files
+└── data.db                # SQLite database file
+
+
+## Notes
+
+- Each backup file is timestamped for easy tracking
+- MinIO bucket is created automatically if it does not exist
+- CLI actions: preview, backup, restore
