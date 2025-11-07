@@ -1,14 +1,21 @@
+import sqlite3
 from faker import Faker
-from sqlite_db import cur, conn
 
 fake = Faker()
 
-for _ in range(4):
+conn = sqlite3.connect('data.db')
+cur = conn.cursor()
+
+for _ in range(10):
     name = fake.name()
     dob = fake.date_of_birth()
     email = fake.email()
     city = fake.city()
-    cur.execute("INSERT INTO users(name, date_of_birth, email, city) VALUES (?, ?, ?, ?)", (name, dob, email, city))
+    cur.execute(
+        "INSERT INTO users(name, date_of_birth, email, city) VALUES (?, ?, ?, ?)",
+        (name, dob, email, city)
+    )
 
 conn.commit()
 conn.close()
+print("Fake data inserted into database.")
